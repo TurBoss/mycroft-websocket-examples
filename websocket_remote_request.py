@@ -1,13 +1,17 @@
 from websocket import create_connection, WebSocket
 import ssl
 
+
 class MyWebSocket(WebSocket):
     def recv_message(self):
         message = super().recv_frame()
         print('Recieved message: {}'.format(message))
         return message
 
-ws = create_connection("ws://0.0.0.0:8181/core", sslopt={"cert_reqs": ssl.CERT_NONE}, class_=MyWebSocket)
+ws = create_connection("ws://0.0.0.0:8181/core", \
+                       sslopt={"cert_reqs": ssl.CERT_NONE}, \
+                       class_=MyWebSocket)
+
 
 mycroft_request = 'what is the weather'
 
